@@ -1,6 +1,6 @@
 const expect = require(`chai`).expect
-const category = 'pressure'
-const unities = require(`../unities/${category}`)
+const category = __filename.split('/tests/')[1].split('.')[0]
+const unities = require(`./../unities/${category}`)
 const Unity = { base: 'torr', to: 'atm'}
 const value = {
   '1': 0.001315785918,
