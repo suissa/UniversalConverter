@@ -18,17 +18,27 @@ module.exports =  {
     name: 'Caloria',
     'J': (val) => (val  * 4.184),
   },
+  'J': {
+    name: 'Joule',
+    'cal': (val) => (val  / 4.184),
+  },
   'torr': {
     name: 'Torr',
-    'atm': (val) => (val  * 0.001315785918),
+    'atm': (val) => (val  / 760.0020536691873),
   },
   'atm': {
-    name: 'ATM',
-    'torr': (val) => (val  / 0.001315785918),
+    name: 'atm',
+    'torr': (val) => (val  * 760.0020536691873),
+    'mmHg': (val) => (val  * 760.0020536691873),
+    'Pa': (val) => (val  * 101325.2738),
+  },
+  'Pa': {
+    name: 'Pascal',
+    'atm': (val) => (val  / 101325.2738),
   },
   'N': {
     name: 'Newton',
-    'kgf': (val) => (val  * 0.10204081632),
+    'kgf': (val) => (val  / 9.8),
   },
   'kgf': {
     name: 'Kilograma-força',
@@ -36,10 +46,10 @@ module.exports =  {
   },
   'km/h': {
     name: 'Kilômetro por hora',
-    'm/min': (val) => (val / (60/1000) ),
-    'm/s': (val) => (val  / (3600/1000)),
-    'cm/min': (val) => (val  / (60/100000) ),
-    'cm/s': (val) => (val  / (3600/100000) ),
+    'm/min': (val) => (val / (60/1000) ).toFixed(2),
+    'm/s': (val) => (val  / (3600/1000)).toFixed(2),
+    'cm/min': (val) => (val  / (60/100000) ).toFixed(2),
+    'cm/s': (val) => (val  / (3600/100000) ).toFixed(2),
   },
   'kg/m3': {
     name: 'Kilograma por metro cúbico',

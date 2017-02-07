@@ -1,6 +1,6 @@
 # Unidades de Medida
 
-Um dos conteúdos mais básicos que encontramos nos nossos estudos é a conversão de unidades de medida.
+Um dos conteúdos mais básicos que encontramos em nossos estudos é a conversão de unidades de medida.
 
 Como um bom programador isso nunca deverá ser problema para nós pois é apenas uma regrinha de três.
 
@@ -24,11 +24,13 @@ Dada a imagem acima correlacione a unidade `erg` com o `J`, então responda a pe
 ## Conversor Universal
 
 
-Estava eu bem de boas ajudando um aluno meu, do Ensino Médio, com conversão de unidades de temperatura aqui: [https://gist.github.com/gkal19/fe07921c562b85818d432d385a662f81](https://gist.github.com/gkal19/fe07921c562b85818d432d385a662f81).
+Estava eu bem de boas ajudando um aluno meu, do Ensino Médio, com conversão de 
+unidades de temperatura aqui: [https://gist.github.com/gkal19/fe07921c562b85818d432d385a662f81](https://gist.github.com/gkal19/fe07921c562b85818d432d385a662f81).
 
-Porém como ele não fez o que pedi ali no comentário eu mesmo fiz para demonstrar.
+Porém como ele não fez o que pedi ali no comentário, eu mesmo o fiz para demonstrar.
 
-Primeiramente precisamos definir a estrutura de dados que teremos para consultar as conversōes de unidades, por exemplo:
+Primeiramente precisamos definir a estrutura de dados que precisamos para consultar 
+as conversōes de unidades, por exemplo:
 
 ```js
 
@@ -52,13 +54,14 @@ module.exports =  {
 
 ```
 
-Agora veja como ficou fácil criar um Conversor Universal para unidades de medidas:
+
+> **Veja como ficou fácil criar um Conversor Universal de Unidades de Medida!**
 
 ```js
 
 const unities = require('./unities.js')
 
-const converter = (val, base, to) => unities[base][to](val)
+const converter = (val, base, to) => Number(unities[base][to](val))
 
 ```
 
@@ -81,6 +84,6 @@ Exemplo:
 }
 
 // chamando a função para converter ela pegará o Objeto assim
-unities['c']['f'](100)
+['c']['f'](100)
 
 ```
