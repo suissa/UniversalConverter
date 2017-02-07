@@ -161,3 +161,63 @@ describe(`Unidade ${Unity.base} deve ser convertida para ${Unity.to}:`,  () =>
 
 ```
 
+Porém quis deixar mais genérico e automatizado ainda, ficando assim:
+
+```js
+
+const expect = require(`chai`).expect
+const fs = require('fs')
+
+const runMuthafuckingTests = (MODULE) => {
+  const testUnity = (toTest) => 
+    it(`${toTest}${MODULE.Unity.base} para  ${MODULE.value[toTest]}${MODULE.Unity.to}`, () => 
+      MODULE.Tests.reduce( (value, test) => test( value.result,value.toTest ), 
+        { result: MODULE.getResult(toTest), 
+          toTest: MODULE.value[toTest] 
+        })
+    )
+
+  describe(MODULE.testTitle,  () => Object.keys(MODULE.value).map(testUnity))
+}
+
+fs.readdirSync(__dirname)
+    .filter( (file) => (file.startsWith('spec.') ) ? file  : false )
+    .map( file => require('./'+file) )
+    .map(runMuthafuckingTests)
+
+
+```
+
+Fazendo com que cada arquivo de `spec` contenha apenas seus dados:
+
+```js
+
+const expect = require(`chai`).expect
+const category = __filename.split('spec.')[1].split('.')[0]
+const unities = require(`./../unities/${category}`)
+const Unity = { base: 'c', to: 'f'}
+const value = {
+  '-100': -148,
+  '0': 32,
+  '25': 77,
+  '100': 212,
+}
+
+const converter = (val, base, to) => Number(unities[base][to](val))
+const testType = (result) =>  expect(result).not.to.be.NaN
+const testValue = (result, correctValue) =>  expect(result).to.equal(correctValue)
+const getResult = (toTest) => converter(toTest, `${Unity.base}`, `${Unity.to}`)
+const testTitle = `Unidade ${Unity.base} deve ser convertida para ${Unity.to}:`
+
+const Tests = [ testType, testValue ]
+
+module.exports = {
+  testTitle,
+  value,
+  unities,
+  getResult,
+  Unity,
+  Tests
+}
+
+```
