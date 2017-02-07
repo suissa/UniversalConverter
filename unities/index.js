@@ -74,9 +74,21 @@ module.exports = {
     'kg': {
     name: 'Quilograma',
     'g': (val) => (val  * 1000),
-  },
+    },
     'g': {
     name: 'Grama',
     'kg': (val) => (val  / 1000),
+    },
+    's': {
+    name: 'Segundo',
+    'min': (val) => (val  * 1 / 60),
+    },
+    'min': {
+    name: 'Minutos',
+    's': (val) => (val  * 60),
+    },
+    'h': {
+    name: 'Hora',
+    'min': (val) => (val  * 1 / 60),
   },
 }
