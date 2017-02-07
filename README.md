@@ -95,6 +95,7 @@ Exemplo:
 Iniciei meus testes como (quase) todo mundo, assim:
 
 ```js
+
 const expect = require('chai').expect
 
 const unities = require('../unities/speed')
@@ -121,12 +122,14 @@ describe('Unidade base km/h',  () => {
   })
 
 })
+
 ```
 
 Fui refatorando-o até chegar nesse código genérico que funciona para todas 
 as unidades de medidas que existirão nessa *lib*:
 
 ```js
+
 const expect = require(`chai`).expect
 const unities = require(`../unities/speed`)
 const Unity = { base: 'km/h', to: 'm/min'}
@@ -148,4 +151,6 @@ const testUnity = (toTest) =>
   })
 
 describe(`Unidade base ${Unity.base}`,  () => Object.keys(value).map(testUnity))
+
 ```
+
