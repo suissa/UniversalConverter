@@ -89,6 +89,6 @@ module.exports = {
     },
     'h': {
     name: 'Hora',
-    'min': (val) => (val  * 1 / 60),
+    'min': (val) => (val  * 60),
   },
 }
