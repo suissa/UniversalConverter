@@ -33,5 +33,8 @@ const converter = (val, base, to) => Number(unities[base][to](val))
 //console.log('converter 1km/h => m/min', converter(1, 'km/h', 'm/min'))
 //console.log('converter 5km/h => m/min', converter(5, 'km/h', 'm/min'))
 
-console.log('converter -100 L => mL', converter(-100, 'L', 'mL'))
-console.log('converter 11 mL => L', converter(0.011, 'mL', 'L'))
+//console.log('converter -100 L => mL', converter(-100, 'L', 'mL'))
+//console.log('converter 11 mL => L', converter(0.011, 'mL', 'L'))
+
+console.log('converter -10 kg => g', converter(-10000, 'kg', 'g'))
+console.log('converter 5 g => kg', converter(0.005, 'g', 'kg'))
