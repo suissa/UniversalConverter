@@ -6,7 +6,7 @@ const h = 60
 
 module.exports =  {
   'km/h': {
-    name: 'Kilômetro por hora',
+    name: 'Kilômetros por hora',
     'm/min': (val) => (val / (min/1000) ).toFixed(DECIMALS),
     'm/s': (val) => (val  / (min * h/1000)).toFixed(DECIMALS),
     'cm/min': (val) => (val  / (min/100000) ).toFixed(DECIMALS),
