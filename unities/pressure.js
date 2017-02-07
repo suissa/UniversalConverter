@@ -5,6 +5,6 @@ module.exports =  {
   },
   'atm': {
     name: 'ATM',
-    'torr': (val) => (val  / 0.001315785918),
+    'torr': (val) => (val  * 760),
   }
 }

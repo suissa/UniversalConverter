@@ -12,10 +12,11 @@ const value = {
 const converter = (val, base, to) => Number(unities[base][to](val))
 
 const testUnity = (toTest) => 
-  it(`Deve converter ${toTest}${Unity.base} para  ${value[toTest]}${Unity.to}`, () => {
+  it(`${toTest}${Unity.base} para  ${value[toTest]}${Unity.to}`, () => {
     const resultado = converter(toTest, `${Unity.base}`, `${Unity.to}`)
     expect(resultado).not.to.be.NaN
     expect(resultado).to.equal(value[toTest])
   })
 
-describe(`Unidade base ${Unity.base}`,  () => Object.keys(value).map(testUnity))
+describe(`Unidade ${Unity.base} deve ser convertida para ${Unity.to}:`,  () => 
+  Object.keys(value).map(testUnity))
