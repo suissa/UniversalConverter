@@ -87,3 +87,65 @@ Exemplo:
 ['c']['f'](100)
 
 ```
+
+
+## Testes
+
+
+Iniciei meus testes como (quase) todo mundo, assim:
+
+```js
+const expect = require('chai').expect
+
+const unities = require('../unities/speed')
+
+const converter = (val, base, to) => Number(unities[base][to](val))
+
+describe('Unidade base km/h',  () => {
+  it('Deve converter 1km/h para  16.67m/min', () => {
+    const resultado = converter(1, 'km/h', 'm/min')
+    expect(resultado).not.to.be.NaN
+    expect(resultado).to.equal(16.67)
+  })
+
+  it('Deve converter 5km/h para  83.33m/min', () => {
+    const resultado = converter(5, 'km/h', 'm/min')
+    expect(resultado).not.to.be.NaN
+    expect(resultado).to.equal(83.33)
+  })
+
+  it('Deve converter 7km/h para  116.67m/min', () => {
+    const resultado = converter(7, 'km/h', 'm/min')
+    expect(resultado).not.to.be.NaN
+    expect(resultado).to.equal(116.67)
+  })
+
+})
+```
+
+Fui refatorando-o até chegar nesse código genérico que funciona para todas 
+as unidades de medidas que existirão nessa *lib*:
+
+```js
+const expect = require(`chai`).expect
+const unities = require(`../unities/speed`)
+const Unity = { base: 'km/h', to: 'm/min'}
+const value = {
+  '1': 16.67,
+  '5': 83.33,
+  '7': 116.67,
+  '11': 183.33,
+  '15': 250,
+}
+
+const converter = (val, base, to) => Number(unities[base][to](val))
+
+const testUnity = (toTest) => 
+  it(`Deve converter ${toTest}${Unity.base} para  ${value[toTest]}${Unity.to}`, () => {
+    const resultado = converter(toTest, `${Unity.base}`, `${Unity.to}`)
+    expect(resultado).not.to.be.NaN
+    expect(resultado).to.equal(value[toTest])
+  })
+
+describe(`Unidade base ${Unity.base}`,  () => Object.keys(value).map(testUnity))
+```
