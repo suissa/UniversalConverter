@@ -13,15 +13,14 @@ const converter = (val, base, to) => Number(unities[base][to](val))
 const testType = (result) =>  expect(result).not.to.be.NaN
 const testValue = (result, correctValue) =>  expect(result).to.equal(correctValue)
 const getResult = (toTest) => converter(toTest, `${Unity.base}`, `${Unity.to}`)
+const testTitle = `Unidade ${Unity.base} deve ser convertida para ${Unity.to}:`
 
 const Tests = [ testType, testValue ]
 
 const testUnity = (toTest) => 
   it(`${toTest}${Unity.base} para  ${value[toTest]}${Unity.to}`, () => 
     Tests.reduce( (value, test) => test( value.result,value.toTest ), 
-      {result: getResult(toTest), toTest: value[toTest]}
-    )
+      {result: getResult(toTest), toTest: value[toTest]})
   )
 
-describe(`Unidade ${Unity.base} deve ser convertida para ${Unity.to}:`,  () => 
-  Object.keys(value).map(testUnity))
+describe(testTitle,  () => Object.keys(value).map(testUnity))
