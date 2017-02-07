@@ -131,26 +131,28 @@ as unidades de medidas que existirão nessa *lib*:
 ```js
 
 const expect = require(`chai`).expect
-const unities = require(`../unities/speed`)
-const Unity = { base: 'km/h', to: 'm/min'}
+const category = __filename.split('/tests/')[1].split('.')[0]
+const unities = require(`./../unities/${category}`)
+
+const Unity = { base: 'c', to: 'f'}
 const value = {
-  '1': 16.67,
-  '5': 83.33,
-  '7': 116.67,
-  '11': 183.33,
-  '15': 250,
+  '-100': -148,
+  '0': 32,
+  '25': 77,
+  '100': 212,
 }
 
 const converter = (val, base, to) => Number(unities[base][to](val))
 
 const testUnity = (toTest) => 
-  it(`Deve converter ${toTest}${Unity.base} para  ${value[toTest]}${Unity.to}`, () => {
+  it(`${toTest}${Unity.base} para  ${value[toTest]}${Unity.to}`, () => {
     const resultado = converter(toTest, `${Unity.base}`, `${Unity.to}`)
     expect(resultado).not.to.be.NaN
     expect(resultado).to.equal(value[toTest])
   })
 
-describe(`Unidade base ${Unity.base}`,  () => Object.keys(value).map(testUnity))
+describe(`Unidade ${Unity.base} deve ser convertida para ${Unity.to}:`,  () => 
+  Object.keys(value).map(testUnity))
 
 ```
 
