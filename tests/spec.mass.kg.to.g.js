@@ -17,12 +17,12 @@ const converter = (val, base, to) => Number(unities[base][to](val))
 const testType = (result) =>  expect(result).not.to.be.NaN
 const testValue = (result, correctValue) =>  expect(result).to.equal(correctValue)
 const getResult = (toTest) => converter(toTest, `${Unity.base}`, `${Unity.to}`)
-const testTitle = `Massa ${Unity.base} deve ser convertida para ${Unity.to}:`
+const titleTest = `Massa ${Unity.base} deve ser convertida para ${Unity.to}:`
 
 const Tests = [ testType, testValue ]
 
 module.exports = {
-  testTitle,
+  titleTest,
   value,
   unities,
   getResult,
